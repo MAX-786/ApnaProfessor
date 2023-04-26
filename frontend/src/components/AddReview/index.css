@@ -1,0 +1,38 @@
+#review-text {
+    padding: 10px;
+    margin: 10px;
+    font-size: 1rem;
+}
+
+.rating-card form {
+    display: inline-block;
+}
+  
+.rating-card input[type="radio"] {
+display: none;
+}
+
+.rating-card label {
+font-size: 30px;
+color: #ccc;
+margin: 0 5px;
+cursor: pointer;
+}
+
+.rating-card label:before {
+    content: '\2605';
+}
+
+.rating-card input[type="radio"]:checked ~ label:before,
+.rating-card input[type="radio"]:hover ~ label:before,
+.rating-card input[type="radio"]:focus ~ label:before {
+  color: #f7d03c;
+}
+
+.rating-card input[type="radio"]:checked ~ label:before {
+  color: #f7d03c;
+}
+
+#review-text {
+  width: 300px;
+}

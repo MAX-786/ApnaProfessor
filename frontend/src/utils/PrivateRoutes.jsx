@@ -1,9 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { selectUser } from "../features/userSlice";
+import {useSelector} from "react-redux";
 
 const PrivateRoutes = () => {
-  const auth = { token: true };
+  const user = useSelector(selectUser);
+
   return ( <>
-    { auth.token ? <Outlet /> : <Navigate to="/login" /> }
+    { user ? <Outlet /> : <Navigate to="/login" /> }
   </> )
 };
 

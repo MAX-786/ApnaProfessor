@@ -67,6 +67,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.error {
+  color: red;
+  text-shadow: 0 0 10px grey;
+}
 /* 
 #020873
 #0C59F2

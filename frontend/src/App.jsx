@@ -9,6 +9,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
+import { PURGE } from "redux-persist";
 // import PrivateRoutes from "./utils/PrivateRoutes";
 
 

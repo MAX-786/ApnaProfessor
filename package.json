@@ -1,19 +1,25 @@
 {
-  "name": "apnaprofessor",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MAX-786/ApnaProfessor.git"
-  },
-  "author": "MAX-786",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MAX-786/ApnaProfessor/issues"
-  },
-  "homepage": "https://github.com/MAX-786/ApnaProfessor#readme"
+    "name": "apnaprofessor",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon --watch backend --exec node backend/server.js",
+        "server": "nodemon backend/server.js",
+        "client": "npm start --prefix frontend"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MAX-786/ApnaProfessor.git"
+    },
+    "author": "MAX-786",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MAX-786/ApnaProfessor/issues"
+    },
+    "homepage": "https://github.com/MAX-786/ApnaProfessor#readme",
+    "dependencies": {
+        "nodemon": "^2.0.22"
+    }
 }

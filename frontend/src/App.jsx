@@ -9,7 +9,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
-import { PURGE } from "redux-persist";
+import {persistor} from './app/store';
 // import PrivateRoutes from "./utils/PrivateRoutes";
 
 
@@ -20,8 +20,9 @@ function App() {
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
-    dispatch(logout());
     auth.signOut();
+    dispatch(logout());
+    persistor.purge();
   }
 
   return (

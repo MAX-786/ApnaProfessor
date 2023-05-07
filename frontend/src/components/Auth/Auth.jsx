@@ -4,6 +4,7 @@ import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '../../firebase'
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout, selectUser } from '../../features/userSlice';
+import axios from 'axios';
 
 const Auth = () => {
 
@@ -11,22 +12,33 @@ const Auth = () => {
     const [error, setError] = useState("");
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
+
     useEffect( () => {
         auth.onAuthStateChanged((authUser) => {
             if (authUser) {
-                dispatch(login({
-                    uid: authUser.uid,
-                    photo: authUser.photoURL,
-                    displayName: authUser.displayName
-                }));
+                // POST to add user to userDB
+                const userData = {
+                    name : authUser.displayName,
+                    uid : authUser.uid,
+                    photo : authUser.photoURL
+                }
+                axios.post('http://localhost:8080/api/user' , userData).then((res, err) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(res);
+                        dispatch(login(res.data));
+                    }
+                });
 
+                
             } else {
                 console.log("logout");
                 dispatch(logout());
             }
         })
     },[loading, dispatch]);
-    console.log(user);
+    // console.log(user);
     const handleSignInWithGoogle = () => {
         setLoading(true);
         signInWithPopup(auth,provider).then((res) => {

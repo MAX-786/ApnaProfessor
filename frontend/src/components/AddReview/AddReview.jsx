@@ -1,12 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef } from "react";
 import "./index.css";
+import axios from 'axios';
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
 
 const AddReview = () => {
   const [emptyReview, setEmptyReview] = useState(true);
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState("0");
+  const [course, setCourse] = useState("");
   // const reviewText = useRef(null)
+
+  const user = useSelector(selectUser);
+  const { professor_id } = useParams();
 
   const handleReviewChange = (e) => {
     if (rating !== "0" && e.target.value !== "") setEmptyReview(false);
@@ -20,10 +28,30 @@ const AddReview = () => {
     setRating(e.target.value);
   };
 
+  const handleCourseChange = (e) => {
+    setCourse(e.target.value);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(reviewText);
     console.log(rating);
+
+    const data = {
+      text : reviewText,
+      rating : rating,
+      user_id : user._id,
+      course: course,
+      professor_id: professor_id
+    }
+
+    axios.post('http://localhost:8080/api/review', data).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    })
+
+
   }
 
   return (
@@ -50,6 +78,7 @@ const AddReview = () => {
         onChange={handleReviewChange}
         placeholder="Tell us a word about your professor..."
       />
+      <input type="text" name="course" id="course" onChange={handleCourseChange} placeholder="Which course"/>
       <button type="submit" disabled={emptyReview ? true : false} onClick={handleSubmit}>
         Submit
       </button>

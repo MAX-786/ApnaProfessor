@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const collegesSlice = createSlice({
     name: "colleges",
     initialState: {
-        colleges: {},
+        colleges: [],
     },
     reducers: {
         addColleges: (state, action) => {
@@ -15,6 +15,6 @@ export const collegesSlice = createSlice({
 
 export const { addColleges } = collegesSlice.actions;
 
-export const selectColleges = (state) => state.colleges.colleges;
+export const getColleges = (state) => state.colleges.colleges;
 
 export default collegesSlice.reducer;

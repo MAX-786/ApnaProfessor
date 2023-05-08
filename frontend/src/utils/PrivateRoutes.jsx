@@ -6,7 +6,7 @@ const PrivateRoutes = () => {
   const user = useSelector(selectUser);
 
   return ( <>
-    { user ? <Outlet /> : <Navigate to="/login" /> }
+    { Object.keys(user).length !== 0 ? <Outlet /> : <Navigate to="/login" /> }
   </> )
 };
 

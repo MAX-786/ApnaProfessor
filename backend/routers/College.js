@@ -27,57 +27,11 @@ router.post("/", async(req, res) => {
 
 router.get("/", (req, res) => {
 
-    const error = {
-        message: "Error in retrieving colleges",
-        error: "Bad request",
-    };
-
-
-    collegeDB.aggregate([{
-                $lookup: {
-                    from: "professors",
-                    let: { college_id: "$_id" },
-                    pipeline: [{
-                            $match: {
-                                $expr: {
-                                    $eq: ["$college_id", "$$college_id"],
-                                },
-                            },
-                        },
-                        {
-                            $project: {
-                                _id: 1,
-                                // user_id: 1,
-                                professor: 1,
-                                // question_id: 1,
-                            },
-                        },
-                    ],
-                    as: "professors",
-                },
-            },
-            // {
-            //   $unwind: {
-            //     path: "$answerDetails",
-            //     preserveNullAndEmptyArrays: true,
-            //   },
-            // },
-            {
-                $project: {
-                    __v: 0,
-                    // _id: "$_id",
-                    // answerDetails: { $first: "$answerDetails" },
-                },
-            },
-        ])
-        .exec()
-        .then((collegeDetails) => {
-            res.status(200).send(collegeDetails);
-        })
-        .catch((e) => {
-            console.log("Error: ", e);
-            res.status(400).send(error);
-        });
+    collegeDB.find({}).then((docs) => {
+        res.status(201).send(docs);
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
 
 });
 
@@ -110,6 +64,7 @@ router.get("/:id", (req, res) => {
                                 // user_id: 1,
                                 name: 1,
                                 courses: 1,
+                                createdAt: 1,
                                 // question_id: 1,
                             },
                         },

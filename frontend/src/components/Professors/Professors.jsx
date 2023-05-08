@@ -28,6 +28,7 @@ const Professors = ({ college_id }) => {
         console.log(err);
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return (

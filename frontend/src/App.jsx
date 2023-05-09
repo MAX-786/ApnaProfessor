@@ -15,21 +15,8 @@ import {persistor} from './app/store';
 
 
 function App() {
-
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
-
-  const handleLogOut = () => {
-    auth.signOut();
-    dispatch(logout());
-    persistor.purge();
-  }
-
   return (
     <>
-      {user && <h1>LoggedIn!</h1>}
-      {user && <button onClick={handleLogOut}>LogOut</button>}
-      
       <NavBar />
       <Outlet />
 

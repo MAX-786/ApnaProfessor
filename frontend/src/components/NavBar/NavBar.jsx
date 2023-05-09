@@ -5,6 +5,13 @@ import Select from './Select';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 import { useNavigate } from 'react-router-dom';
+import './index.css';
+import SocialLinks from '../SocialLinks/SocialLinks';
+import UserWebMenu from '../UserWebMenu/UserWebMenu';
+import UserMobileMenu from '../UserMobileMenu/UserMobileMenu';
+import InstaIcon from '../../assets/instagram.svg';
+import GithubIcon from '../../assets/github.svg';
+import LinkedinIcon from '../../assets/linkedin.svg';
 
 const NavBar = () => {
   const user = useSelector(selectUser);
@@ -18,16 +25,30 @@ const NavBar = () => {
   return (
     <div className='header-container'>
         <div className="header-wrapper">
-            <header id="header" role='banner'>
-            {user === null && <button onClick={handleLogIn} >LogIn</button>}
-            <Select />
-            <NavSearch for="teacher" />
-            <NavSearch for="college" />
-
-            </header>
+          <div className="header">
+            <div className="social-links">
+              <SocialLinks link="#" socialName="Follow us Instagram" imgSrc={InstaIcon} />
+              <SocialLinks link="#" socialName="Follow us GitHub" imgSrc={GithubIcon} />
+              <SocialLinks link="#" socialName="Follow us LinkedIn" imgSrc={LinkedinIcon} />
+            </div>
+            <div className="user-items">
+              <UserWebMenu />
+              <UserMobileMenu />
+            </div>
+          </div>
         </div>
     </div>
   )
 }
+
+        {/* <div className="header-wrapper">
+            <header id="header" role='banner'>
+            {user === null && <button onClick={handleLogIn} >LogIn</button>}
+            <Select />
+            <NavSearch for="professor" />
+            <NavSearch for="college" />
+
+            </header>
+        </div> */}
 
 export default NavBar

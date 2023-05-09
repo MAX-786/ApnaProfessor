@@ -1,0 +1,41 @@
+.user-web-menu-wrapper {
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .user-web-menu-wrapper {
+        display: none;
+    }
+}
+
+.user-web-menu-wrapper .login {
+    color: rgb(255, 255, 255);
+    display: block;
+    font-weight: 700;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 16px;
+    white-space: nowrap;
+    background-color: black;
+    border-color: black;
+    font-size: 16px;
+    padding: 8px 24px;
+}
+
+.user-web-menu-wrapper .logout {
+    color: rgb(255, 255, 255);
+    display: block;
+    font-weight: 700;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 16px;
+    white-space: nowrap;
+    background-color: rgb(255, 79, 79);
+    border-color: rgb(243, 106, 106);
+    font-size: 16px;
+    padding: 8px 24px;
+}

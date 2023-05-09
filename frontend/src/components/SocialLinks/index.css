@@ -1,0 +1,12 @@
+.social-icon-link {
+    color: rgb(21, 21, 21);
+    font-family: HelveticaNeue, arial;
+    font-size: 14px;
+}
+
+.social-icon {
+    box-sizing: content-box;
+    height: 18px;
+    padding-left: 20px;
+    width: 18px;
+}

@@ -5,6 +5,7 @@ import { auth, provider } from '../../firebase'
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout, selectUser } from '../../features/userSlice';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Auth = () => {
 
@@ -12,6 +13,7 @@ const Auth = () => {
     const [error, setError] = useState("");
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
+    const navigate = useNavigate();
 
     useEffect( () => {
         auth.onAuthStateChanged((authUser) => {
@@ -43,6 +45,7 @@ const Auth = () => {
         setLoading(true);
         signInWithPopup(auth,provider).then((res) => {
             setLoading(false);
+            navigate("/");
             
         }).catch((err) => {
             setError(err.message);

@@ -1,0 +1,23 @@
+.user-mobile-menu-wrapper {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .user-mobile-menu-wrapper {
+        display: block;
+    }
+}
+
+.user-mobile-menu-wrapper .menu-btn {
+    height: 14px;
+    width: 19px;
+    background: url(/src/assets/menu-burger.svg) 0% 0% / contain no-repeat;
+    background-repeat: no-repeat;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    flex: 0 0 auto;
+    margin: 8px;
+    outline: none;
+}

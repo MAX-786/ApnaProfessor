@@ -18,9 +18,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import Colleges from './components/Colleges/Colleges'
 import College from './components/Colleges/College'
 import Professor from './components/Professors/Professor'
+import Home from './components/Home/Home';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Root />} errorElement={<ErrorPage />}>
+    <Route index element={<Home />} />
     <Route element={<PrivateRoutes />}>
       <Route path='add-review/:professor_id' element={<AddReview />} />
     </Route>

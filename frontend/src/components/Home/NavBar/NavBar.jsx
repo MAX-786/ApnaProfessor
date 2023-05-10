@@ -3,15 +3,15 @@ import React from 'react';
 import NavSearch from './NavSearch';
 import Select from './Select';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../features/userSlice';
+import { selectUser } from '../../../features/userSlice';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
-import SocialLinks from '../SocialLinks/SocialLinks';
+import SocialLinks from '../../SocialLinks/SocialLinks';
 import UserWebMenu from '../UserWebMenu/UserWebMenu';
 import UserMobileMenu from '../UserMobileMenu/UserMobileMenu';
-import InstaIcon from '../../assets/instagram.svg';
-import GithubIcon from '../../assets/github.svg';
-import LinkedinIcon from '../../assets/linkedin.svg';
+import InstaIcon from '../../../assets/instagram.svg';
+import GithubIcon from '../../../assets/github.svg';
+import LinkedinIcon from '../../../assets/linkedin.svg';
 
 const NavBar = () => {
   const user = useSelector(selectUser);

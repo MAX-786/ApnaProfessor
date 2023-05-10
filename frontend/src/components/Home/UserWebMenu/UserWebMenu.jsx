@@ -2,9 +2,9 @@
 import React from 'react'
 import './index.css'
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selectUser } from "../../features/userSlice";
-import { auth } from "../../firebase";
-import {persistor} from '../../app/store';
+import { logout, selectUser } from "../../../features/userSlice";
+import { auth } from "../../../firebase";
+import {persistor} from '../../../app/store';
 import { useNavigate } from 'react-router-dom';
 
 const UserWebMenu = () => {

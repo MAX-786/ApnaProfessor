@@ -1,0 +1,80 @@
+.cta-wrapper {
+    margin: 0.625rem auto;
+    max-width: 80rem;
+    width: 100%;
+    height: 37.5rem;
+    max-height: 100%;
+}
+
+.cta-header {
+    font-family: sans-serif;
+    margin-bottom: 3.5rem;
+    text-align: center;
+}
+
+.cta-main-header {
+    margin: 1rem auto;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.cta-sub-header {
+    font-size: 1.625rem;
+    font-weight: 400;
+}
+
+.cta-img-prompts {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4.5rem;
+}
+
+.cta-card {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 20rem;
+}
+
+.cta-card-img {
+    height: 16.875rem;
+    width: 20.3125rem;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.cta-card-text {
+    font-size: 1.625rem;
+    line-height: 1.625rem;
+    margin: 0px auto;
+    max-width: 300px;
+    text-align: center;
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+}
+
+.cta-signup {
+    margin: 0 auto;
+    max-width: 12.25rem;
+    min-width: 12.25rem;
+    text-decoration: none;
+    background: black;
+    border: 0.0625rem solid rgb(0, 33, 255);
+    border-radius: 6.25rem;
+    color: white;
+    display: flex;
+    font-stretch: normal;
+    font-weight: 700;
+    -webkit-box-pack: center;
+    justify-content: center;
+    letter-spacing: normal;
+    line-height: 1.54;
+    outline: none;
+    padding: 0.6875rem 2.875rem;
+    transition: transform 0.2s ease 0s;
+}
+
+.cta-signup:hover {
+    transform: scale(1.05);
+}

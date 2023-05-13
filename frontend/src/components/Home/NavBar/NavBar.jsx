@@ -14,13 +14,6 @@ import GithubIcon from '../../../assets/github.svg';
 import LinkedinIcon from '../../../assets/linkedin.svg';
 
 const NavBar = () => {
-  const user = useSelector(selectUser);
-  const navigate = useNavigate();
-
-  const handleLogIn = () => {
-    console.log("login");
-    navigate("/login");
-  }
 
   return (
     <div className='header-container'>

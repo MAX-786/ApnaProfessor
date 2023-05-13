@@ -17,6 +17,8 @@ const UserWebMenu = () => {
     auth.signOut();
     dispatch(logout());
     persistor.purge();
+    navigate("/");
+    alert("You have been Logged Out!");
   }
 
   const handleLogIn = () => {

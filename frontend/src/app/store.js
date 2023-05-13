@@ -8,27 +8,27 @@ import storage from 'redux-persist/lib/storage/session';
 import { PURGE } from "redux-persist";
 
 const persistConfigUser = {
-        key: 'user',
+    key: 'user',
+    storage,
+}
+const persistConfigColleges = {
+        key: 'colleges',
         storage,
     }
-    // const persistConfigColleges = {
-    //         key: 'colleges',
-    //         storage,
-    //     }
     // const persistConfigProfessors = {
     //     key: 'professors',
     //     storage,
     // }
 
 const persistedReducer = persistReducer(persistConfigUser, userReducer)
-    // const persistedReducerColleges = persistReducer(persistConfigColleges, collegesReducer)
+const persistedReducerColleges = persistReducer(persistConfigColleges, collegesReducer)
     // const persistedReducerProfessors = persistReducer(persistConfigProfessors, professorsReducer)
 const customEntityAdapter = createEntityAdapter();
 
 export const store = configureStore({
     reducer: {
         user: persistedReducer,
-        colleges: collegesReducer,
+        colleges: persistedReducerColleges,
         professors: professorsReducer,
         // thread: threadReducer,
     },

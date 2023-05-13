@@ -1,0 +1,24 @@
+.professors-container {
+    max-width: 80rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.professors-wrapper {
+    margin: 1rem 2rem;
+}
+
+.professor-container {
+    max-width: 80rem;
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.reviews-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+}

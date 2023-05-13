@@ -1,5 +1,5 @@
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/src/assets/hero-banner.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.295), rgb(0 0 0)), url(/src/assets/hero-banner.jpg);
   height: 500px;
   width: 100%;
   display: flex;
@@ -22,19 +22,21 @@
 }
 
 .search-bar {
-    width: 300px;
-    height: 40px;
-    margin-top: 20px;
-    padding: 0 10px;
-    background: white;
-    color: black;
-    font-size: 18px;
-    border-radius: 10px;
-    border: none;
+  width: 370px;
+  height: 50px;
+  padding: 0px 16px;
+  background: white;
+  color: black;
+  font-size: 18px;
+  border-radius: 25px;
+  border: none;
+  margin: 20px;
+  text-align: center;
 }
 .search-bar::placeholder {
     color: rgba(0, 0, 0, 0.5);
     font-weight: 500;
+    text-align: center;
 }
 
 .button {

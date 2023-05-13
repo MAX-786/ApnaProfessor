@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const router = express.Router();
 
 const professorDB = require("../models/Professor");
+const reviewDB = require("../models/Review");
 
 router.post("/", async(req, res) => {
     const professorData = new professorDB({
@@ -27,67 +28,37 @@ router.post("/", async(req, res) => {
         });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async(req, res) => {
 
     const error = {
         message: "Error in retrieving Professors",
         error: "Bad request",
     };
 
+    let professor;
+    await professorDB.findOne({ _id: new mongoose.Types.ObjectId(req.params.id) }).then((p) => {
+        professor = p;
+    }).catch((err) => {
+        res.status(400).send(err);
+    })
 
-    professorDB.aggregate([{
-                $match: { _id: new mongoose.Types.ObjectId(req.params.id) },
-            },
-            {
-                $lookup: {
-                    from: "reviews",
-                    let: { professor_id: "$_id" },
-                    pipeline: [{
-                            $match: {
-                                $expr: {
-                                    $eq: ["$professor_id", "$$professor_id"],
-                                },
-                            },
-                        },
-                        {
-                            $project: {
-                                _id: 1,
-                                // user_id: 1,
-                                text: 1,
-                                course: 1,
-                                rating: 1,
-                                user_id: 1,
-                                createdAt: 1,
-                                // question_id: 1,
-                            },
-                        },
-                    ],
-                    as: "reviews",
-                },
-            },
-            // {
-            //   $unwind: {
-            //     path: "$answerDetails",
-            //     preserveNullAndEmptyArrays: true,
-            //   },
-            // },
-            {
-                $project: {
-                    __v: 0,
-                    // _id: "$_id",
-                    // answerDetails: { $first: "$answerDetails" },
-                },
-            },
-        ])
-        .exec()
-        .then((professorDetails) => {
-            res.status(200).send(professorDetails);
+    // Fetching REVIEWS 
+    const options = {
+        page: req.query.page || 1,
+        limit: 10,
+    };
+
+    await reviewDB.paginate({ professor_id: req.params.id }, options)
+        .then((paginated_reviews) => {
+            res.status(200).send({
+                ...paginated_reviews,
+                professor: professor
+            });
         })
         .catch((e) => {
             console.log("Error: ", e);
             res.status(400).send(error);
         });
-
 
 });
 

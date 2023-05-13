@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const router = express.Router();
 
 const collegeDB = require("../models/College");
+const professorDB = require("../models/Professor");
 
 router.post("/", async(req, res) => {
     const collegeData = new collegeDB({
@@ -25,70 +26,57 @@ router.post("/", async(req, res) => {
         });
 });
 
-router.get("/", (req, res) => {
+router.get("/", async(req, res) => {
 
-    collegeDB.find({}).then((docs) => {
-        res.status(201).send(docs);
-    }).catch((err) => {
-        res.status(400).send(err);
-    });
+    const options = {
+        page: req.query.page || 1,
+        limit: 10,
+    };
+
+    if (!req.query.q || req.query.q === "") {
+        await collegeDB.paginate({}, options)
+            .then((docs) => {
+                res.status(200).send(docs);
+            }).catch((err) => {
+                res.status(400).send(err);
+            });
+    } else {
+        await collegeDB.paginate({ name: { $regex: req.query.q, $options: "i" } }, options).then((docs) => {
+            res.status(200).send(docs);
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
+    }
 
 });
 
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async(req, res) => {
 
     const error = {
         message: "Error in retrieving colleges",
         error: "Bad request",
     };
 
+    let college;
+    await collegeDB.findOne({ _id: new mongoose.Types.ObjectId(req.params.id) }).then((c) => {
+        college = c;
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
 
-    collegeDB.aggregate([{
-                $match: { _id: new mongoose.Types.ObjectId(req.params.id) },
-            },
-            {
-                $lookup: {
-                    from: "professors",
-                    let: { college_id: "$_id" },
-                    pipeline: [{
-                            $match: {
-                                $expr: {
-                                    $eq: ["$college_id", "$$college_id"],
-                                },
-                            },
-                        },
-                        {
-                            $project: {
-                                _id: 1,
-                                // user_id: 1,
-                                name: 1,
-                                courses: 1,
-                                createdAt: 1,
-                                // question_id: 1,
-                            },
-                        },
-                    ],
-                    as: "professors",
-                },
-            },
-            // {
-            //   $unwind: {
-            //     path: "$answerDetails",
-            //     preserveNullAndEmptyArrays: true,
-            //   },
-            // },
-            {
-                $project: {
-                    __v: 0,
-                    // _id: "$_id",
-                    // answerDetails: { $first: "$answerDetails" },
-                },
-            },
-        ])
-        .exec()
-        .then((collegeDetails) => {
-            res.status(200).send(collegeDetails);
+    // Fetching All Professos
+    const options = {
+        page: req.query.page || 1,
+        limit: 10,
+    };
+
+    await professorDB.paginate({ college_id: req.params.id }, options)
+        .then((data) => {
+            res.status(200).send({
+                ...data,
+                college
+            });
         })
         .catch((e) => {
             console.log("Error: ", e);

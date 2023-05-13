@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const paginate = require('mongoose-paginate-v2');
 
 const collegeSchema = new mongoose.Schema({
     name: String,
@@ -9,5 +10,7 @@ const collegeSchema = new mongoose.Schema({
 }, {
     timestamps: true
 });
+
+collegeSchema.plugin(paginate);
 
 module.exports = mongoose.model('College', collegeSchema);

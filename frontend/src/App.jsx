@@ -10,11 +10,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
 import {persistor} from './app/store';
+import axios from 'axios';
+import { addColleges } from "./features/collegesSlice";
 // import PrivateRoutes from "./utils/PrivateRoutes";
 
 
 
 function App() {
+  const dispatch = useDispatch();
+  React.useEffect( () => {
+    axios
+    .get(`http://localhost:8080/api/college/all`)
+    .then(({data}) => {
+      dispatch(addColleges(data));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  },[]);
   return <Outlet />
 }
 

@@ -15,21 +15,30 @@ import Auth from "./components/Auth/Auth";
 import { Provider } from "react-redux";
 import { store, persistor } from "./app/store";
 import { PersistGate } from "redux-persist/integration/react";
-import { Colleges } from "./components/Colleges/Colleges";
+import {
+  Colleges,
+  loader as collegeLoader,
+} from "./components/Colleges/Colleges";
 import Professor from "./components/Professors/Professor";
 import Home from "./components/Home/Home";
-import { Layout, loader as collegeLoader } from "./components/Layout/Layout";
+import { Layout } from "./components/Layout/Layout";
 import Professors from "./components/Professors/Professors";
+import AddCollege from "./components/AddCollege/AddCollege";
+import AddProfessor from "./components/AddProfessor/AddProfessor";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
       <Route index element={<Home />} />
       <Route element={<PrivateRoutes />}>
-        <Route path="add-review/:professor_id" element={<AddReview />} />
+        <Route path="add" element={<Layout />}>
+          <Route path="college" element={<AddCollege />} />
+          <Route path="professor" element={<AddProfessor />} />
+          <Route path="review" element={<AddReview />} />
+        </Route>
       </Route>
-      <Route path="colleges" loader={collegeLoader} element={<Layout />}>
-        <Route index element={<input />} />
+      <Route path="colleges" element={<Layout />}>
+        <Route index loader={collegeLoader} element={<Colleges />} />
         <Route path=":college_id" element={<Professors />} />
         <Route path=":college_id/:professor_id" element={<Professor />} />
       </Route>

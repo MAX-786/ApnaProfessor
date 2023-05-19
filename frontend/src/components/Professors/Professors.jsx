@@ -73,7 +73,7 @@ const Professors = () => {
                 </ListItemAvatar>
                 <Link to={`/colleges/${college_id}/${professor._id}`}>
                   <ListItemText
-                    primary={professor.name}
+                    primary={professor.fname + `${professor.mname !== "" ? ( " " + professor.mname + " ") : " "}` + professor.lname}
                     secondary={new Date(professor?.createdAt).toLocaleString(
                       "en-GB",
                       {

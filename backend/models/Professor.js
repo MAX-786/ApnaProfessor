@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const paginate = require('mongoose-paginate-v2');
 
 const professorSchema = new mongoose.Schema({
-    name: String,
+    fname: String,
+    mname: String,
+    lname: String,
+    department: String,
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",

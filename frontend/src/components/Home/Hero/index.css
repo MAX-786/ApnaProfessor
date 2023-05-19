@@ -1,5 +1,5 @@
 .hero {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.295), rgb(0 0 0)), url(/src/assets/hero-banner.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.295), rgb(0 0 0 / 0%)), url(/src/assets/hero-banner.jpg);
   height: 500px;
   width: 100%;
   display: flex;
@@ -17,8 +17,9 @@
 
 .dynamic-paragraph {
   font-size: 24px;
+  font-weight: bolder;
   margin-top: 20px;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .search-bar {

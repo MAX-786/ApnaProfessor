@@ -1,20 +1,42 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addColleges, getColleges } from "../../features/collegesSlice";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
 import "./index.css";
 import ListColleges from "./ListColleges/ListColleges";
+import { persistor } from "../../app/store";
+
+export async function loader({ request }) {
+  const query = new URL(request.url).searchParams.get("q") ? new URL(request.url).searchParams.get("q") : "";
+  let colleges;
+  await axios
+    .get(`http://localhost:8080/api/college?q=${query}`)
+    .then(({ data }) => {
+      // console.log(query);
+      colleges = {
+        ...data,
+        query: query
+      };
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return colleges;
+}
 
 export const Colleges = () => {
-  const collegesState = useSelector(getColleges);
+
+  const colleges = useLoaderData();
+  // console.log(colleges);
 
   return (
     <>
       <div className="colleges-list-container">
-        <ListColleges colleges={collegesState} />
+        <p>Found {colleges?.docs.length} college{colleges?.docs.length > 1 ? "s" : ""} starting with &quot;{colleges?.query}&quot; </p>
+        <ListColleges colleges={colleges?.docs} />
       </div>
     </>
   );

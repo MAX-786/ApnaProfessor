@@ -12,6 +12,9 @@ router.post("/", async(req, res) => {
     const collegeData = new collegeDB({
         name: req.body.name,
         user_id: req.body.user_id,
+        country: req.body.country,
+        state: req.body.state,
+        city: req.body.city
     });
 
     await collegeData
@@ -24,6 +27,14 @@ router.post("/", async(req, res) => {
                 message: "College not added successfully",
             });
         });
+});
+
+router.get("/all", async(req, res) => {
+    await collegeDB.find({}).then((docs) => {
+        res.status(200).send(docs);
+    }).catch((err) => {
+        res.status(400).send(err);
+    })
 });
 
 router.get("/", async(req, res) => {

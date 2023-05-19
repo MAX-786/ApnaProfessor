@@ -7,6 +7,9 @@ const collegeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
+    coutry: String,
+    state: String,
+    city: String
 }, {
     timestamps: true
 });

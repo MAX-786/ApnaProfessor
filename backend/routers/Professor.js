@@ -10,10 +10,13 @@ const reviewDB = require("../models/Review");
 
 router.post("/", async(req, res) => {
     const professorData = new professorDB({
-        name: req.body.name,
+        fname: req.body.fname,
+        mname: req.body.mname,
+        lname: req.body.lname,
         user_id: req.body.user_id,
         college_id: req.body.college_id,
         courses: req.body.courses,
+        department: req.body.department,
     });
 
     await professorData

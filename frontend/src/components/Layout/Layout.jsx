@@ -7,16 +7,8 @@ import { addColleges } from "../../features/collegesSlice";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import "./index.css";
-import { persistor } from "../../app/store";
-
-export function loader({ request }) {
-  return new URL(request.url).searchParams.get("q")
-    ? new URL(request.url).searchParams.get("q")
-    : "";
-}
 
 export const Layout = () => {
-  const dispatch = useDispatch();
   // const navigate = useNavigate();
 
   // const handleOnSubmit = (e) => {
@@ -32,20 +24,6 @@ export const Layout = () => {
   //   navigate(`/colleges?q=${e.target[0].value}`);
   // };
 
-  const query = useLoaderData();
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/college?q=${query}`)
-      .then(({data}) => {
-        console.log(data);
-        persistor.purge(['persistedReducerColleges']);
-        dispatch(addColleges(data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
 
   return (
     <>

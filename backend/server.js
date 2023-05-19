@@ -34,12 +34,12 @@ app.get("*", (req, res) => {
     try {
         res.sendFile(path.join(`${__dirname}/../frontend/dist/index.html`));
     } catch (e) {
-        res.send("Welcome to Apna Professor");
+        res.send("Welcome to KYTE");
     }
 });
 
 app.use(cors());
 
 app.listen(PORT, () => {
-    console.log(`Apna Professor API is running on PORT No- ${PORT}`);
+    console.log(`KYTE API is running on PORT No- ${PORT}`);
 });

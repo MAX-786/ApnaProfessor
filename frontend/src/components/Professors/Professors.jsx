@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addProfessors, getProfessors } from "../../features/professorsSlice";
 import List from "@mui/material/List";
@@ -12,7 +12,7 @@ import Avatar from "@mui/material/Avatar";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
 import "./index.css";
-import { Pagination, Typography } from "@mui/material";
+import { Button, Pagination, Typography } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
 const Professors = () => {
@@ -25,6 +25,7 @@ const Professors = () => {
 
   const professorsState = useSelector(getProfessors);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setProfessors(professorsState);
@@ -49,6 +50,10 @@ const Professors = () => {
 
   const handlePageChange = (e, value) => {
     setPage(value);
+  };
+
+  const handleAddProfessor = () => {
+    navigate("/add/professor");
   };
 
   return (
@@ -91,6 +96,7 @@ const Professors = () => {
             </div>
           ))}
         </List>
+        <Button id="add-professor" onClick={handleAddProfessor} variant="outlined">Add new Professor</Button>
         <Pagination count={pageCount} page={page} onChange={handlePageChange} sx={{ display: "flex", flexDirection: "column", alignItems: "center"}} />
       </div>
     </div>

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -18,6 +18,7 @@ const Professor = () => {
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
   const [reviewsCount, setReiewsCount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -35,6 +36,10 @@ const Professor = () => {
 
   const handlePageChange = (e, value) => {
     setPage(value);
+  };
+
+  const handleAddReview = () => {
+    navigate(`/add/review/${professor_id}`);  
   };
 
   return (
@@ -58,7 +63,7 @@ const Professor = () => {
               border: "2px outset lightgray",
             }}>
             <CardContent>
-              <Rating name="read-only" value={review.rating} readOnly />
+              <Rating size="large" name="read-only" value={review.rating} readOnly />
               <Typography
                 sx={{ mb: 1.5, textAlign: "right" }}
                 color="text.secondary">
@@ -83,6 +88,7 @@ const Professor = () => {
             {/* <p>{review?.course}</p> */}
           </Card>
         ))}
+        <Button id="add-review" onClick={handleAddReview} variant="outlined">Add a Review</Button>
         <Pagination
           count={pageCount}
           page={page}

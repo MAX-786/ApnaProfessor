@@ -34,7 +34,7 @@ const router = createBrowserRouter(
         <Route path="add" element={<Layout />}>
           <Route path="college" element={<AddCollege />} />
           <Route path="professor" element={<AddProfessor />} />
-          <Route path="review" element={<AddReview />} />
+          <Route path="review/:professor_id" element={<AddReview />} />
         </Route>
       </Route>
       <Route path="colleges" element={<Layout />}>

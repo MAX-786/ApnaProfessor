@@ -45,23 +45,27 @@ router.get("/:id", async(req, res) => {
         res.status(400).send(err);
     })
 
-    // Fetching REVIEWS 
-    const options = {
-        page: req.query.page || 1,
-        limit: 10,
-    };
+    if (req.query.prof_only && req.query.prof_only === "true") {
+        res.status(200).send(professor);
+    } else {
+        // Fetching REVIEWS 
+        const options = {
+            page: req.query.page || 1,
+            limit: 10,
+        };
 
-    await reviewDB.paginate({ professor_id: req.params.id }, options)
-        .then((paginated_reviews) => {
-            res.status(200).send({
-                ...paginated_reviews,
-                professor: professor
+        await reviewDB.paginate({ professor_id: req.params.id }, options)
+            .then((paginated_reviews) => {
+                res.status(200).send({
+                    ...paginated_reviews,
+                    professor: professor
+                });
+            })
+            .catch((e) => {
+                console.log("Error: ", e);
+                res.status(400).send(error);
             });
-        })
-        .catch((e) => {
-            console.log("Error: ", e);
-            res.status(400).send(error);
-        });
+    }
 
 });
 

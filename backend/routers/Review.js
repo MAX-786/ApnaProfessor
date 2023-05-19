@@ -16,12 +16,13 @@ router.post("/", async(req, res) => {
         rating: req.body.rating,
         user_id: req.body.user_id,
         votes: 0,
+        mandatory_attd: req.body.mandatory_attd,
     });
 
     await reviewData
         .save()
         .then(async(doc) => {
-            await userDB.findOneAndUpdate(req.body.user_id, { $push: { profs_reviewed: req.body.professor_id } });
+            await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $push: { profs_reviewed: req.body.professor_id } });
             res.status(201).send(doc);
         })
         .catch((err) => {
@@ -38,7 +39,7 @@ router.post('/:id', async(req, res) => {
     if (!req.body.checked) {
         await reviewDB.findOneAndUpdate(req.params.id, { $inc: { votes: -1 } })
             .then(async(doc) => {
-                await userDB.findOneAndUpdate(doc.user_id, { $pull: { reviews_voted: req.params.id } });
+                await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $pull: { reviews_voted: req.params.id } });
                 res.status(201).send(doc);
 
             }).catch((err) => {
@@ -48,7 +49,7 @@ router.post('/:id', async(req, res) => {
 
         await reviewDB.findOneAndUpdate(req.params.id, { $inc: { votes: 1 } })
             .then(async(doc) => {
-                await userDB.findOneAndUpdate(doc.user_id, { $push: { reviews_voted: req.params.id } });
+                await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $push: { reviews_voted: req.params.id } });
                 res.status(201).send(doc);
 
             }).catch((err) => {

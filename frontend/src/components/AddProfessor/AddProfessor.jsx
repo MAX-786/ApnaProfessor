@@ -7,6 +7,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import { getColleges } from "../../features/collegesSlice";
+import { useNavigate } from "react-router-dom";
 
 const AddProfessor = () => {
   React.useEffect(() => {
@@ -17,13 +18,14 @@ const AddProfessor = () => {
   const colleges = useSelector(getColleges);
   const user = useSelector(selectUser);
   const [clgId, setClgId] = React.useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const professorData = {
       fname: e.target.querySelector("#fname").value,
-      mname: e.target.querySelector("#mname").value && "",
+      mname: e.target.querySelector("#mname")?.value ? e.target.querySelector("#mname").value : "",
       lname: e.target.querySelector("#lname").value,
       user_id: user._id,
       college_id: clgId,
@@ -34,7 +36,8 @@ const AddProfessor = () => {
     axios
       .post("http://localhost:8080/api/professor", professorData)
       .then(({ data }) => {
-        console.log(data);
+        alert(`${data.fname + `${data.mname !== "" ? ( " " + data.mname + " ") : " "}` + data.lname} is added successfully!`);
+        navigate(`/colleges/${data.college_id}/${data._id}`);
       })
       .catch((err) => {
         console.log(err);

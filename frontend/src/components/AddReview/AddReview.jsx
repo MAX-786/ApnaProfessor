@@ -50,7 +50,7 @@ const AddReview = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [professor_id]);
 
   const handleAttdChange = (e) => {
     setAttdValue(e.target.value);

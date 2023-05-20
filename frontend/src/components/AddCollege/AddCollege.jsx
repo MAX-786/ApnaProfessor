@@ -6,8 +6,10 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
+import { useNavigate } from "react-router-dom";
+import { fetchAllColleges } from "../../App";
 
 const AddCollege = () => {
   const [countryCode, setCountryCode] = useState("");
@@ -23,7 +25,9 @@ const AddCollege = () => {
   const cities = City.getCitiesOfState(countryCode, stateCode);
 
   const user = useSelector(selectUser) || {};
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   React.useEffect(() => {
     // Update the page title
     document.title = "Add a College | Know Your Teachers Excusively";
@@ -42,11 +46,16 @@ const AddCollege = () => {
 
     axios
       .post("http://localhost:8080/api/college", collegeData)
-      .then((err, res) => {
-        if (err) console.log(err);
-        else console.log(res);
-      });
+      .then(( res) => {
+        alert(`${res.data.name} is added successfully!`);
+        fetchAllColleges(dispatch);
+        navigate(`/colleges/${res.data._id}`);
+      }).catch((err) => {
+        console.log(err);
+        alert("College NOT added!")
+      })
   };
+
 
   return (
     <div>

@@ -14,19 +14,21 @@ import axios from 'axios';
 import { addColleges } from "./features/collegesSlice";
 // import PrivateRoutes from "./utils/PrivateRoutes";
 
-
+export const fetchAllColleges = (dispatch) => {
+  axios
+  .get(`http://localhost:8080/api/college/all`)
+  .then(({data}) => {
+    dispatch(addColleges(data));
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
 
 function App() {
   const dispatch = useDispatch();
   React.useEffect( () => {
-    axios
-    .get(`http://localhost:8080/api/college/all`)
-    .then(({data}) => {
-      dispatch(addColleges(data));
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    fetchAllColleges(dispatch);
   },[]);
   return <Outlet />
 }

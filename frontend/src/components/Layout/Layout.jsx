@@ -24,14 +24,11 @@ export const Layout = () => {
   //   navigate(`/colleges?q=${e.target[0].value}`);
   // };
 
-
   return (
     <>
       <div className="layout-container">
         <div className="navbar-container">
-          <div className="navbar-wrapper">
-            <NavBar />
-          </div>
+          <NavBar />
         </div>
         <Outlet />
       </div>

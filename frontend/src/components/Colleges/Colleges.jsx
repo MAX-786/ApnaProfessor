@@ -41,7 +41,7 @@ export const Colleges = () => {
   return (
     <>
       <div className="colleges-list-container">
-        <p>Found {colleges?.docs.length} college{colleges?.docs.length > 1 ? "s" : ""} containing &quot;{colleges?.query}&quot; </p>
+        <p className="colleges-list-header">Found {colleges?.totalDocs} college{colleges?.totalDocs > 1 ? "s" : ""} containing &quot;{colleges?.query}&quot; </p>
         <ListColleges colleges={colleges?.docs} />
         <Button variant="outlined" id="add-college" onClick={handleAddCollege}>Add new college</Button>
       </div>

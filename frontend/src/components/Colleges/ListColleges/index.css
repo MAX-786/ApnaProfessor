@@ -1,0 +1,16 @@
+.college-container {
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgb(192 255 243);
+    display: flex;
+    padding: 14px 27px;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+    margin-bottom: 24px;
+    border-radius: 16px;
+    border: 0px solid black;
+}
+.colleges-list-wrapper {
+    background-color: transparent !important;
+}

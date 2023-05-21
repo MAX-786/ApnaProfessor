@@ -63,13 +63,14 @@ const Professors = () => {
           {college?.name}
         </Typography>
         <List
+          className="professors-list"
           sx={{
             width: "100%",
-            maxWidth: 360,
+            maxWidth: 720,
             bgcolor: "background.paper",
           }}>
           {professors.map((professor) => (
-            <div key={professor._id}>
+            <div key={professor._id} className="professor-item-container">
               <ListItem>
                 <ListItemAvatar>
                   <Avatar>

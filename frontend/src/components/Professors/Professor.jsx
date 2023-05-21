@@ -45,7 +45,7 @@ const Professor = () => {
   return (
     <div className="professor-container">
       <Typography sx={{ fontSize: 24 }} color="text.secondary" gutterBottom>
-        {professor?.name}
+        {professor?.fname + `${professor?.mname !== "" ? ( " " + professor?.mname + " ") : " "}` + professor?.lname}
       </Typography>
       <div className="reviews-wrapper">
         <Box sx={{ borderBottom: 1, borderColor: "divider", alignSelf: "start" }}>

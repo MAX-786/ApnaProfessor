@@ -8,11 +8,16 @@
     margin: 1rem 2rem;
 }
 
+.professors-list {
+    background-color: transparent !important;
+}
+
 .professor-container {
     max-width: 80rem;
     width: 100%;
     margin: 1rem auto;
 }
+
 
 .reviews-wrapper {
     display: flex;
@@ -21,4 +26,18 @@
     max-width: 720px;
     width: 100%;
     margin: 0 auto;
+}
+
+.professor-item-container {
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgb(192 255 243);
+    display: flex;
+    padding: 14px 27px;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+    margin-bottom: 24px;
+    border-radius: 16px;
+    border: 0px solid black;
 }

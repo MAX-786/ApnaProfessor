@@ -1,5 +1,5 @@
 .hero {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.295), rgb(0 0 0 / 0%)), url(/src/assets/hero-banner.jpg);
+  background-image: url(/src/assets/blob-scene-haikei.svg);
   height: 500px;
   width: 100%;
   display: flex;
@@ -7,7 +7,6 @@
   align-items: center;
   justify-content: center;
   background-size: cover;
-  background-attachment: fixed;
   position: relative;
 }
 
@@ -41,7 +40,7 @@
 }
 
 .button {
-  background-color: #c3825f;
+  background-color: black;
   color: white;
   font-size: 18px;
   padding: 10px 20px;
@@ -49,4 +48,26 @@
   border-radius: 5px;
   margin-top: 20px;
   cursor: pointer;
+}
+
+.wave-hero {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: translateY(345px);
+  z-index: 10;
+}
+
+.wave-hero svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 60px;
+}
+
+.wave-hero .shape-fill {
+  fill: #b9ffe6;
 }

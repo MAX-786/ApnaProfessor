@@ -7,6 +7,7 @@ const router = express.Router();
 
 const professorDB = require("../models/Professor");
 const reviewDB = require("../models/Review");
+const collegeDB = require('../models/College');
 
 router.post("/", async(req, res) => {
     const professorData = new professorDB({
@@ -21,7 +22,8 @@ router.post("/", async(req, res) => {
 
     await professorData
         .save()
-        .then((doc) => {
+        .then(async(doc) => {
+            await collegeDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.college_id) }, { $inc: { prof_count: 1 } });
             res.status(201).send(doc);
         })
         .catch((err) => {
@@ -46,6 +48,7 @@ router.get("/:id", async(req, res) => {
     })
 
     if (req.query.prof_only && req.query.prof_only === "true") {
+        // Needs Professor only, no reviews needed
         res.status(200).send(professor);
     } else {
         // Fetching REVIEWS 

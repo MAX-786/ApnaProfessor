@@ -31,17 +31,24 @@ export default function ListColleges(props) {
               <Link to={`/colleges/${college._id}`}>
                 <ListItemText
                   primary={college.name}
-                  secondary={new Date(college?.createdAt).toLocaleString(
-                    "en-GB",
-                    {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                      hour: "numeric",
-                      minute: "numeric",
-                      hour12: true,
-                    }
-                  )}
+                  secondary={
+                    <>
+                      <ListItemText secondary={`${college?.prof_count} professors`} />
+                      <ListItemText
+                        secondary={new Date(college?.createdAt).toLocaleString(
+                          "en-GB",
+                          {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "numeric",
+                            hour12: true,
+                          }
+                        )}
+                      />
+                    </>
+                  }
                 />
               </Link>
             </ListItem>

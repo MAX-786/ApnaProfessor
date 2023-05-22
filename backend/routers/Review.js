@@ -37,7 +37,7 @@ router.post("/", async(req, res) => {
 router.post('/:id', async(req, res) => {
 
     if (!req.body.checked) {
-        await reviewDB.findOneAndUpdate(req.params.id, { $inc: { votes: -1 } })
+        await reviewDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.params.id) }, { $inc: { votes: -1 } })
             .then(async(doc) => {
                 await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $pull: { reviews_voted: req.params.id } });
                 res.status(201).send(doc);
@@ -47,7 +47,7 @@ router.post('/:id', async(req, res) => {
             });
     } else {
 
-        await reviewDB.findOneAndUpdate(req.params.id, { $inc: { votes: 1 } })
+        await reviewDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.params.id) }, { $inc: { votes: 1 } })
             .then(async(doc) => {
                 await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $push: { reviews_voted: req.params.id } });
                 res.status(201).send(doc);

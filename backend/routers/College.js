@@ -14,7 +14,8 @@ router.post("/", async(req, res) => {
         user_id: req.body.user_id,
         country: req.body.country,
         state: req.body.state,
-        city: req.body.city
+        city: req.body.city,
+        prof_count: 0,
     });
 
     await collegeData

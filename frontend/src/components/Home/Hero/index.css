@@ -48,6 +48,8 @@
   border-radius: 5px;
   margin-top: 20px;
   cursor: pointer;
+  position: relative;
+  z-index: 20;
 }
 
 .wave-hero {

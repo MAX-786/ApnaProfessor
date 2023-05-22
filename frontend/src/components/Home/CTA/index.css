@@ -35,10 +35,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: #9bffdc;
+    background: #c0fff3;
     border-radius: 25px;
     padding: 20px 0;
     box-shadow: 0px 0px 20px 0px #86e5c3;
+}
+
+/* ******* MOBILE VIEW ****** */
+
+@media screen and (max-width: 720px) {
+    .cta-card {
+        margin: 0 10px 15px 0;
+    }
+
+    .cta-img-prompts {
+        justify-content: center;
+    }
 }
 
 .cta-card-img {

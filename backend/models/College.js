@@ -9,7 +9,8 @@ const collegeSchema = new mongoose.Schema({
     },
     coutry: String,
     state: String,
-    city: String
+    city: String,
+    prof_count: Number,
 }, {
     timestamps: true
 });

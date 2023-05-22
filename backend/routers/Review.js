@@ -7,6 +7,7 @@ const router = express.Router();
 
 const reviewDB = require("../models/Review");
 const userDB = require('../models/User');
+const professorDB = require('../models/Professor');
 
 router.post("/", async(req, res) => {
     const reviewData = new reviewDB({
@@ -22,7 +23,8 @@ router.post("/", async(req, res) => {
     await reviewData
         .save()
         .then(async(doc) => {
-            await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $push: { profs_reviewed: req.body.professor_id } });
+            await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $addToSet: { profs_reviewed: req.body.professor_id } });
+            await professorDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.professor_id) }, { $inc: { review_count: 1 } });
             res.status(201).send(doc);
         })
         .catch((err) => {

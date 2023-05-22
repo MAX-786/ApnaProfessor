@@ -15,6 +15,7 @@ const professorSchema = new mongoose.Schema({
         ref: "College",
     },
     courses: [{ type: String }],
+    review_count: Number,
 }, {
     timestamps: true
 });

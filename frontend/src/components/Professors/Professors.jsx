@@ -59,8 +59,11 @@ const Professors = () => {
   return (
     <div className="professors-container">
       <div className="professors-wrapper">
-        <Typography sx={{ fontSize: 24 }} color="text.secondary" gutterBottom>
-          {college?.name}
+        <Typography
+          sx={{ fontSize: 24, borderBottom: "1px solid black", textAlign: "left" }}
+          color="text.secondary"
+          gutterBottom>
+          College: <b>{college?.name}</b>
         </Typography>
         <List
           className="professors-list"
@@ -79,26 +82,54 @@ const Professors = () => {
                 </ListItemAvatar>
                 <Link to={`/colleges/${college_id}/${professor._id}`}>
                   <ListItemText
-                    primary={professor.fname + `${professor.mname !== "" ? ( " " + professor.mname + " ") : " "}` + professor.lname}
-                    secondary={new Date(professor?.createdAt).toLocaleString(
-                      "en-GB",
-                      {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                        hour: "numeric",
-                        minute: "numeric",
-                        hour12: true,
-                      }
-                    )}
+                    primary={
+                      professor.fname +
+                      `${
+                        professor.mname !== ""
+                          ? " " + professor.mname + " "
+                          : " "
+                      }` +
+                      professor.lname
+                    }
+                    secondary={
+                      <>
+                        <ListItemText secondary={`${professor?.review_count} reviews`} />
+                        <ListItemText
+                          secondary={new Date(
+                            professor?.createdAt
+                          ).toLocaleString("en-GB", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "numeric",
+                            hour12: true,
+                          })}
+                        />
+                      </>
+                    }
                   />
                 </Link>
               </ListItem>
             </div>
           ))}
         </List>
-        <Button id="add-professor" onClick={handleAddProfessor} variant="outlined">Add new Professor</Button>
-        <Pagination count={pageCount} page={page} onChange={handlePageChange} sx={{ display: "flex", flexDirection: "column", alignItems: "center"}} />
+        <Button
+          id="add-professor"
+          onClick={handleAddProfessor}
+          variant="outlined">
+          Add new Professor
+        </Button>
+        <Pagination
+          count={pageCount}
+          page={page}
+          onChange={handlePageChange}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        />
       </div>
     </div>
   );

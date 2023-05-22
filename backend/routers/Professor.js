@@ -18,6 +18,7 @@ router.post("/", async(req, res) => {
         college_id: req.body.college_id,
         courses: req.body.courses,
         department: req.body.department,
+        review_count: 0,
     });
 
     await professorData

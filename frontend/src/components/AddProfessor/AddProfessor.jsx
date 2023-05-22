@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const AddProfessor = () => {
   React.useEffect(() => {
     // Update the page title
-    document.title = "Add a Professor | Know Your Teachers Excusively";
+    document.title = "Add a Professor | Know Your Professors Excusively";
   }, []);
 
   const colleges = useSelector(getColleges);

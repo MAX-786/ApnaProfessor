@@ -35,7 +35,7 @@ const AddReview = () => {
 
   React.useEffect(() => {
     // Update the page title
-    document.title = "Add a Review | Know Your Teachers Excusively";
+    document.title = "Add a Review | Know Your Professors Excusively";
 
     axios
       .get(`http://localhost:8080/api/professor/${professor_id}?prof_only=true`)

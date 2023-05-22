@@ -30,7 +30,7 @@ const AddCollege = () => {
   
   React.useEffect(() => {
     // Update the page title
-    document.title = "Add a College | Know Your Teachers Excusively";
+    document.title = "Add a College | Know Your Professors Excusively";
   }, []);
 
   const handleSubmit = (e) => {

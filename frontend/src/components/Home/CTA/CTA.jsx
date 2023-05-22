@@ -6,17 +6,17 @@ const CTA = () => {
   return (
     <div className='cta-wrapper'>
         <div className="cta-header">
-            <h1 className="cta-main-header">Join KYTE!</h1>
-            <h2 className="cta-sub-header">You ask, Why?</h2>
+            <h1 className="cta-main-header">Join KYPE now!</h1>
+            <h2 className="cta-sub-header">- &quot;Why?&quot;</h2>
         </div>
         <div className="cta-img-prompts">
             <div className="cta-card">
                 <img src="/src/assets/online-review-animate.svg" alt="Online Review Animation" className="cta-card-img" />
-                <div className="cta-card-text">Manage and edit your ratings</div>
+                <div className="cta-card-text">Manage your reviews</div>
             </div>
             <div className="cta-card">
                 <img src="/src/assets/hidden-animate.svg" alt="Review Anonymously Animation" className="cta-card-img" />
-                <div className="cta-card-text">Your ratings are always anonymous</div>
+                <div className="cta-card-text">Give reviews Anonymously</div>
             </div>
             <div className="cta-card">
                 <img src="/src/assets/upvote-animate.svg" alt="Upvote Reveiws Animation" className="cta-card-img" />

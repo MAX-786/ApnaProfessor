@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import { fetchAllColleges } from "../../App";
+import { Typography } from "@mui/material";
 
 const AddCollege = () => {
   const [countryCode, setCountryCode] = useState("");
@@ -27,7 +28,7 @@ const AddCollege = () => {
   const user = useSelector(selectUser) || {};
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   React.useEffect(() => {
     // Update the page title
     document.title = "Add a College | Know Your Professors Excusively";
@@ -46,21 +47,22 @@ const AddCollege = () => {
 
     axios
       .post("http://localhost:8080/api/college", collegeData)
-      .then(( res) => {
+      .then((res) => {
         alert(`${res.data.name} is added successfully!`);
         fetchAllColleges(dispatch);
         navigate(`/colleges/${res.data._id}`);
-      }).catch((err) => {
-        console.log(err);
-        alert("College NOT added!")
       })
+      .catch((err) => {
+        console.log(err);
+        alert("College NOT added!");
+      });
   };
-
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <TextField type="text" id="name" name="name" placeholder="Name" />
+      <form onSubmit={handleSubmit} className="addcollege-form">
+        <h2 className="addcollege-header">Add a college</h2>
+        <h4 className="addcollege-sub-header">Before adding a college, please make sure that it does not exists!</h4>
         <Box
           sx={{
             width: 300,
@@ -68,8 +70,15 @@ const AddCollege = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-around",
-            height: "200px",
+            height: "300px",
           }}>
+          <TextField
+            type="search"
+            id="name"
+            name="name"
+            label="College Name"
+            margin="normal"
+          />
           <Autocomplete
             onChange={(e, opt) => {
               setCountryCode(opt.isoCode);

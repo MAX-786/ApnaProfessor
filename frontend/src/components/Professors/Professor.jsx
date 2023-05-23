@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./index.css";
 import { Pagination, Box, Tab, Tabs } from "@mui/material";
+import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 
 const Professor = () => {
   const { professor_id } = useParams();
@@ -71,9 +72,6 @@ const Professor = () => {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
                 })}
               </Typography>
               <Typography sx={{ fontSize: "1rem", textAlign: "left" }}>
@@ -82,7 +80,7 @@ const Professor = () => {
             </CardContent>
             <CardActions>
               <Button size="small" color="primary">
-                Report this review
+                <FlagOutlinedIcon />
               </Button>
             </CardActions>
             {/* <p>{review?.course}</p> */}

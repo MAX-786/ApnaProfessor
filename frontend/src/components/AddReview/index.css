@@ -1,27 +1,32 @@
-#review-text, #course {
-    padding: 10px;
-    margin: 10px;
-    font-size: 1rem;
-    width: 300px;
+#review-text,
+#course {
+  padding: 10px;
+  margin: 10px;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.review-header {
+  margin-top: 1rem;
 }
 
 .rating-card form {
-    display: inline-block;
+  display: inline-block;
 }
-  
+
 .rating-card input[type="radio"] {
-display: none;
+  display: none;
 }
 
 .rating-card label {
-font-size: 30px;
-color: #ccc;
-margin: 0 5px;
-cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+  margin: 0 5px;
+  cursor: pointer;
 }
 
 .rating-card label:before {
-    content: '\2605';
+  content: "\2605";
 }
 
 .rating-card input[type="radio"]:checked ~ label:before,
@@ -32,4 +37,16 @@ cursor: pointer;
 
 .rating-card input[type="radio"]:checked ~ label:before {
   color: #f7d03c;
+}
+
+.addreview-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 405px;
+  justify-content: space-around;
+}
+
+.radio-group-attd {
+  flex-direction: row !important;
 }

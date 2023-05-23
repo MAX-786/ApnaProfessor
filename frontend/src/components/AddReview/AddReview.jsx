@@ -82,12 +82,12 @@ const AddReview = () => {
 
   return (
     <div>
-      <div className="review-header">Review: {profName}</div>
-      <form onSubmit={handleSubmit}>
+      <h2 className="review-header">Review: {profName}</h2>
+      <form onSubmit={handleSubmit} className="addreview-form">
         {RatingValue !== null ? (
-          <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : RatingValue]}</Box>
+          <Box sx={{ fontSize: "1.3rem" }}>{labels[hover !== -1 ? hover : RatingValue]}</Box>
         ) : (
-          <Box sx={{ ml: 2 }}>-</Box>
+          <Box sx={{ fontSize: "1.3rem" }}>-</Box>
         )}
         <Box
           sx={{
@@ -114,19 +114,22 @@ const AddReview = () => {
         </Box>
         <TextField
           id="course"
-          placeholder="Course/Subject"
+          type="search"
+          label="Course/Subject"
           inputProps={{ maxLength: 200 }}
         />
         <TextField
           id="review-text"
-          placeholder="Add something more?"
+          type="search"
+          label="Add something more?"
           inputProps={{ maxLength: 200 }}
         />
-        <Typography>Was attendance mandatory?</Typography>
+        <Typography sx={{fontSize: "1.3rem"}}>Was attendance mandatory?</Typography>
         <RadioGroup
           aria-labelledby="demo-error-radios"
           name="attd"
           value={attd_value}
+          className="radio-group-attd"
           onChange={handleAttdChange}>
           <FormControlLabel
             value={true}

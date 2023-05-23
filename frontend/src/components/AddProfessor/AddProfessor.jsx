@@ -25,7 +25,9 @@ const AddProfessor = () => {
 
     const professorData = {
       fname: e.target.querySelector("#fname").value,
-      mname: e.target.querySelector("#mname")?.value ? e.target.querySelector("#mname").value : "",
+      mname: e.target.querySelector("#mname")?.value
+        ? e.target.querySelector("#mname").value
+        : "",
       lname: e.target.querySelector("#lname").value,
       user_id: user._id,
       college_id: clgId,
@@ -36,7 +38,13 @@ const AddProfessor = () => {
     axios
       .post("http://localhost:8080/api/professor", professorData)
       .then(({ data }) => {
-        alert(`${data.fname + `${data.mname !== "" ? ( " " + data.mname + " ") : " "}` + data.lname} is added successfully!`);
+        alert(
+          `${
+            data.fname +
+            `${data.mname !== "" ? " " + data.mname + " " : " "}` +
+            data.lname
+          } is added successfully!`
+        );
         navigate(`/colleges/${data.college_id}/${data._id}`);
       })
       .catch((err) => {
@@ -47,15 +55,28 @@ const AddProfessor = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <Box sx={{ display: "flex", flexDirection: "column", width: 300, margin: "10px auto"}}>
-          <label htmlFor="fname">First Name</label>
-          <TextField type="text" name="fname" id="fname" />
-          <label htmlFor="mname">Middle Name</label>
-          <TextField type="text" name="mname" id="mname" />
-          <label htmlFor="lname">Last Name</label>
-          <TextField type="text" name="lname" id="lname" />
-          <label htmlFor="dep">Professor&apos;s Department</label>
-          <TextField type="text" name="dep" id="dep" />
+        <h2 className="addcollege-header">Add a professor</h2>
+        <h4 className="addcollege-sub-header">
+          Before adding a professor, please make sure that it does not exists!
+        </h4>
+        <Box
+          sx={{
+            width: 300,
+            margin: "10px auto",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            height: "400px",
+          }}>
+          <TextField type="search" label="First Name" name="fname" id="fname" />
+          <TextField
+            type="search"
+            label="Middle Name (optional)"
+            name="mname"
+            id="mname"
+          />
+          <TextField type="search" label="Last Name" name="lname" id="lname" />
+          <TextField type="search" label="Department" name="dep" id="dep" />
           <Autocomplete
             id="college-select"
             sx={{ width: 300 }}

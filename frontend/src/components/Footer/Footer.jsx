@@ -4,7 +4,7 @@ import './index.css'
 
 const Footer = () => {
   return (
-    <div className='footer-wrapper'>&copy; 2023 Know Your Teacher Exclusively, All Rights Reserved</div>
+    <div className='footer-wrapper'>&copy; 2023 Know Your Professors Exclusively, All Rights Reserved</div>
   )
 }
 

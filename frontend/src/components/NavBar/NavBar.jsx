@@ -170,7 +170,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: "black" }} enableColorOnDark >
+      <AppBar position="static" style={{ background: "#000000a3", backdropFilter: "blur(8px)" }} enableColorOnDark >
         <Toolbar>
           <Typography
             variant="h6"

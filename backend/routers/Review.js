@@ -37,28 +37,49 @@ router.post("/", async(req, res) => {
 
 // API for handling Vote button
 router.post('/:id', async(req, res) => {
-
-    if (!req.body.checked) {
-        await reviewDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.params.id) }, { $inc: { votes: -1 } })
-            .then(async(doc) => {
-                await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $pull: { reviews_voted: req.params.id } });
-                res.status(201).send(doc);
-
-            }).catch((err) => {
-                res.status(400).send(err);
+    if (!req.body.isUpvoted) {
+        await userDB
+            .findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $pull: { reviews_voted: req.params.id } })
+            .then(async(user) => {
+                if (user === null) {
+                    return res.status(404).send("User not found!");
+                }
+                await reviewDB
+                    .findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.params.id) }, { $inc: { votes: -1 } }, { new: true, upsert: true })
+                    .then(async(doc) => {
+                        return res.status(201).send(doc);
+                    })
+                    .catch((err) => {
+                        return res.status(400).send(err);
+                    });
+            })
+            .catch((err) => {
+                return res.status(400).send(err);
             });
+
     } else {
-
-        await reviewDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.params.id) }, { $inc: { votes: 1 } })
-            .then(async(doc) => {
-                await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $push: { reviews_voted: req.params.id } });
-                res.status(201).send(doc);
-
-            }).catch((err) => {
-                res.status(400).send(err);
+        await userDB
+            .findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $push: { reviews_voted: req.params.id } })
+            .then(async(user) => {
+                if (user === null) {
+                    return res.status(404).send("User not found!");
+                }
+                await reviewDB
+                    .findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.params.id) }, { $inc: { votes: 1 } }, { new: true, upsert: true })
+                    .then(async(doc) => {
+                        return res.status(201).send(doc);
+                    })
+                    .catch((err) => {
+                        return res.status(400).send(err);
+                    });
+            })
+            .catch((err) => {
+                return res.status(400).send(err);
             });
+
     }
 });
+
 
 
 module.exports = router;

@@ -12,10 +12,16 @@ export const userSlice = createSlice({
         logout: (state) => {
             state.user = null;
         },
+        addReviewId: (state, action) => {
+            state.user.reviews_voted.push(action.payload);
+        },
+        removeReviewId: (state, action) => {
+            state.user.reviews_voted = state.user.reviews_voted.filter((id) => (id !== action.payload));
+        },
     },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, addReviewId, removeReviewId } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 

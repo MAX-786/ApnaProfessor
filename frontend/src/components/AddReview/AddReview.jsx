@@ -72,7 +72,7 @@ const AddReview = () => {
     axios
       .post("http://localhost:8080/api/review", reviewData)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         navigate(`/colleges/${college_id.current}/${professor_id}`)
       })
       .catch((err) => {

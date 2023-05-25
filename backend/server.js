@@ -34,12 +34,12 @@ app.get("*", (req, res) => {
     try {
         res.sendFile(path.join(`${__dirname}/../frontend/dist/index.html`));
     } catch (e) {
-        res.send("Welcome to KYTE");
+        res.send("Welcome to KYPE");
     }
 });
 
 app.use(cors());
 
 app.listen(PORT, () => {
-    console.log(`KYTE API is running on PORT No- ${PORT}`);
+    console.log(`KYPE API is running on PORT No- ${PORT}`);
 });

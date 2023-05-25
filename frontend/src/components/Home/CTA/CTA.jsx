@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import './index.css';
+import onlineReview from "../../../assets/online-review-animate.svg";
+import anonymousReview from "../../../assets/hidden-animate.svg";
+import upvoteReview from "../../../assets/upvote-animate.svg";
 
 const CTA = () => {
   return (
@@ -12,17 +15,17 @@ const CTA = () => {
         <div className="cta-img-prompts">
             <div className="cta-card">
                 <a style={{fontSize: "8px", position: "absolute", transform: "rotate(270deg) translate(-160px, -155px)"}} href="https://www.freepik.com/free-vector/up-concept-illustration_5539103.htm#query=like%20illustration&position=1&from_view=keyword&track=ais">Image by storyset on Freepik</a>
-                <img src="/src/assets/online-review-animate.svg" alt="Online Review Animation" className="cta-card-img" />
+                <img src={onlineReview} alt="Online Review Animation" className="cta-card-img" />
                 <div className="cta-card-text">Manage your reviews</div>
             </div>
             <div className="cta-card">
             <a style={{fontSize: "8px", position: "absolute", transform: "rotate(270deg) translate(-160px, -155px)"}} href="https://www.freepik.com/free-vector/up-concept-illustration_5539103.htm#query=like%20illustration&position=1&from_view=keyword&track=ais">Image by storyset on Freepik</a>
-                <img src="/src/assets/hidden-animate.svg" alt="Review Anonymously Animation" className="cta-card-img" />
+                <img src={anonymousReview} alt="Review Anonymously Animation" className="cta-card-img" />
                 <div className="cta-card-text">Give reviews Anonymously</div>
             </div>
             <div className="cta-card">
             <a style={{fontSize: "8px", position: "absolute", transform: "rotate(270deg) translate(-160px, -155px)"}} href="https://www.freepik.com/free-vector/up-concept-illustration_5539103.htm#query=like%20illustration&position=1&from_view=keyword&track=ais">Image by storyset on Freepik</a>
-                <img src="/src/assets/upvote-animate.svg" alt="Upvote Reveiws Animation" className="cta-card-img" />
+                <img src={upvoteReview} alt="Upvote Reveiws Animation" className="cta-card-img" />
                 <div className="cta-card-text">Upvote others reviews</div>
             </div>
         </div>

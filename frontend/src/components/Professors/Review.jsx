@@ -38,13 +38,13 @@ const Review = ({ review, isVoted }) => {
         setVotes((prev) => (!isUpvoted ? prev + 1 : prev - 1));
         if (!isUpvoted) dispatch(addReviewId(review._id));
         else dispatch(removeReviewId(review._id));
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
         console.error(err);
       });
 
-    console.log(!isUpvoted, review._id);
+    // console.log(!isUpvoted, review._id);
   };
 
   return (

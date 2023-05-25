@@ -15,7 +15,32 @@ const professorSchema = new mongoose.Schema({
         ref: "College",
     },
     courses: [{ type: String }],
-    review_count: Number,
+    review_count: {
+        type: Number,
+        default: 0,
+    },
+    total_rating: {
+        star1: {
+            type: Number,
+            default: 0,
+        },
+        star2: {
+            type: Number,
+            default: 0,
+        },
+        star3: {
+            type: Number,
+            default: 0,
+        },
+        star4: {
+            type: Number,
+            default: 0,
+        },
+        star5: {
+            type: Number,
+            default: 0,
+        },
+    },
 }, {
     timestamps: true
 });

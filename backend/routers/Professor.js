@@ -37,7 +37,7 @@ router.post("/", async(req, res) => {
 router.get("/:id", async(req, res) => {
 
     const error = {
-        message: "Error in retrieving Professors",
+        message: "Error in retrieving Professor",
         error: "Bad request",
     };
 

@@ -2,6 +2,7 @@
 import React from "react";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+import { TextField } from "@mui/material";
 
 function Hero() {
   const navigate = useNavigate();
@@ -17,11 +18,11 @@ function Hero() {
         alt="Website Logo"
         className="hero-logo"
       />
-      <p className="dynamic-paragraph">This is a dynamic paragraph.</p>
-      <form onSubmit={handleOnSubmit}>
-        <input
-          type="text"
-          placeholder="Find your College/School"
+      <p className="dynamic-paragraph">Explore and Share Reviews!</p>
+      <form onSubmit={handleOnSubmit} className="hero-search-form">
+        <TextField
+          type="search"
+          label="Find your College/School"
           className="search-bar"
         />
         <button type="submit" className="button">

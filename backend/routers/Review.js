@@ -24,7 +24,7 @@ router.post("/", async(req, res) => {
         .save()
         .then(async(doc) => {
             await userDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.user_id) }, { $addToSet: { profs_reviewed: req.body.professor_id } });
-            await professorDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.professor_id) }, { $inc: { review_count: 1 } });
+            await professorDB.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(req.body.professor_id) }, { $inc: { review_count: 1, [`total_rating.star${req.body.rating}`]: 1 } });
             res.status(201).send(doc);
         })
         .catch((err) => {

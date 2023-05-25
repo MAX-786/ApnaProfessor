@@ -56,11 +56,33 @@ const Professors = () => {
     navigate("/add/professor");
   };
 
+  const calculateAverageRating = (totalRating, totalCount) => {
+    let sum = 0;
+
+    for (let star in totalRating) {
+      const count = totalRating[star];
+      sum += parseInt(star[4]) * count;
+    }
+
+    if (totalCount === 0) {
+      return 0; // Return 0 if there are no reviews yet
+    }
+
+    const averageRating = sum / totalCount;
+    const roundedRating = averageRating.toFixed(1); // Round to 1 decimal place
+
+    return parseFloat(roundedRating);
+  };
+
   return (
     <div className="professors-container">
       <div className="professors-wrapper">
         <Typography
-          sx={{ fontSize: 24, borderBottom: "1px solid black", textAlign: "left" }}
+          sx={{
+            fontSize: 24,
+            borderBottom: "1px solid black",
+            textAlign: "left",
+          }}
           color="text.secondary"
           gutterBottom>
           College: <b>{college?.name}</b>
@@ -76,12 +98,30 @@ const Professors = () => {
             <div key={professor._id} className="professor-item-container">
               <ListItem>
                 <ListItemAvatar>
-                  <Avatar>
-                    <PersonIcon />
+                  <Avatar
+                    alt="average rating"
+                    sx={{ width: 56, height: 56, bgcolor: "white" }}>
+                    <Typography
+                      sx={{
+                        color: "black",
+                        fontWeight: "bolder",
+                        fontSize: "1.8rem",
+                      }}>
+                      {calculateAverageRating(
+                        professor.total_rating,
+                        professor.review_count
+                      )}
+                    </Typography>
                   </Avatar>
+                  <Typography
+                    variant="helper-text"
+                    sx={{ fontSize: "8px", marginLeft: "6px" }}>
+                    overall rating
+                  </Typography>
                 </ListItemAvatar>
                 <Link to={`/colleges/${college_id}/${professor._id}`}>
                   <ListItemText
+                    sx={{ marginLeft: "1rem" }}
                     primary={
                       professor.fname +
                       `${
@@ -93,7 +133,9 @@ const Professors = () => {
                     }
                     secondary={
                       <>
-                        <ListItemText secondary={`${professor?.review_count} reviews`} />
+                        <ListItemText
+                          secondary={`${professor?.review_count} reviews`}
+                        />
                         <ListItemText
                           secondary={new Date(
                             professor?.createdAt

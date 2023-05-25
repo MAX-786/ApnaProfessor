@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addProfessors, getProfessors } from "../../features/professorsSlice";
 import List from "@mui/material/List";
@@ -26,6 +26,7 @@ const Professors = () => {
   const professorsState = useSelector(getProfessors);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     setProfessors(professorsState);
@@ -53,7 +54,7 @@ const Professors = () => {
   };
 
   const handleAddProfessor = () => {
-    navigate("/add/professor");
+    navigate("/add/professor", {state: { from : location.pathname + location.search}});
   };
 
   const calculateAverageRating = (totalRating, totalCount) => {

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -26,6 +26,7 @@ const Professor = () => {
   const [reviewsCount, setReiewsCount] = useState(0);
   const navigate = useNavigate();
   const user = useSelector(selectUser);
+  const location = useLocation();
 
   useEffect(() => {
     axios
@@ -46,7 +47,7 @@ const Professor = () => {
   };
 
   const handleAddReview = () => {
-    navigate(`/add/review/${professor_id}`);
+    navigate(`/add/review/${professor_id}`, {state: { from : location.pathname }});
   };
 
   return (

@@ -62,7 +62,7 @@ const AddCollege = () => {
     <div>
       <form onSubmit={handleSubmit} className="addcollege-form">
         <h2 className="addcollege-header">Add a college</h2>
-        <h4 className="addcollege-sub-header">Before adding a college, please make sure that it does not exists!</h4>
+        <h4 className="addcollege-sub-header">Before adding a college, please make sure that it does not already exist!</h4>
         <Box
           sx={{
             width: 300,

@@ -57,7 +57,7 @@ const AddProfessor = () => {
       <form onSubmit={handleSubmit}>
         <h2 className="addcollege-header">Add a professor</h2>
         <h4 className="addcollege-sub-header">
-          Before adding a professor, please make sure that it does not exists!
+        Please ensure professor does not already exist before adding.
         </h4>
         <Box
           sx={{

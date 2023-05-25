@@ -2,10 +2,14 @@
 import React from "react";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
-import { TextField } from "@mui/material";
+import { TextField, Autocomplete } from "@mui/material";
+import { useSelector } from "react-redux";
+import { getColleges } from "../../../features/collegesSlice";
 
 function Hero() {
   const navigate = useNavigate();
+  const colleges = useSelector(getColleges);
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     navigate(`/colleges?q=${e.target[0].value}`);
@@ -20,10 +24,23 @@ function Hero() {
       />
       <p className="dynamic-paragraph">Explore and Share Reviews!</p>
       <form onSubmit={handleOnSubmit} className="hero-search-form">
-        <TextField
-          type="search"
-          label="Find your College/School"
-          className="search-bar"
+        <Autocomplete
+        sx={{ width: "360px"}}
+          freeSolo
+          id="search-field"
+          disableClearable
+          options={colleges.map((clg) => (clg.name))}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className="search-bar"
+              label="Find your College/School"
+              InputProps={{
+                ...params.InputProps,
+                type: "search",
+              }}
+            />
+          )}
         />
         <button type="submit" className="button">
           Find

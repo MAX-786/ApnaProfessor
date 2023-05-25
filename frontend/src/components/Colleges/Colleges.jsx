@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addColleges, getColleges } from "../../features/collegesSlice";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import ListColleges from "./ListColleges/ListColleges";
 import { persistor } from "../../app/store";
@@ -38,9 +38,10 @@ export const Colleges = () => {
   const colleges = useLoaderData();
   // console.log(colleges);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleAddCollege = () => {
-    navigate("/add/college");
+    navigate("/add/college", {state: { from : location.pathname + location.search }});
   };
 
   const handlePageChange = (e,v) => {

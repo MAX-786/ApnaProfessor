@@ -5,7 +5,7 @@ import { auth, provider } from "../../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "../../features/userSlice";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -13,14 +13,15 @@ const Auth = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const navigate = useNavigate();
+  const location = useLocation();
 
-    useEffect(() => {
-        if (user && Object.keys(user).length !== 0) {
-            setTimeout(() => {
-                navigate("/");
-            }, 1000);
-          }
-    });
+  useEffect(() => {
+    if (user && Object.keys(user).length !== 0) {
+      setTimeout(() => {
+        navigate(location.state?.from || "/", {replace: true});
+      }, 1000);
+    }
+  });
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -53,7 +54,7 @@ const Auth = () => {
     signInWithPopup(auth, provider)
       .then((res) => {
         setLoading(false);
-        navigate("/");
+        navigate(location.state?.from || "/", {replace: true});
       })
       .catch((err) => {
         setError(err.message);
@@ -70,7 +71,9 @@ const Auth = () => {
             className="login-with-google"
             disabled={loading || user}
             onClick={handleSignInWithGoogle}>
-            {user ? "You're already loggedIn, sending you Home :)" : "Login with Goolge"}
+            {user
+              ? "You're already loggedIn, sending you Home :)"
+              : "Login with Goolge"}
           </button>
         </div>
       </div>

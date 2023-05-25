@@ -33,7 +33,8 @@
 }
 
 .search-bar {
-  width: 370px;
+  max-width: 360px;
+  width: 100%;
   height: 50px;
   padding: 0px 16px;
   background: white;
@@ -43,6 +44,11 @@
   border: none;
   margin: 20px;
   text-align: center;
+}
+
+.search-bar input {
+  max-width: 360px !important;
+  width: 100% !important;
 }
 
 .search-bar fieldset {

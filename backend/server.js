@@ -1,9 +1,8 @@
-if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
-}
-
+process.chdir(__dirname);
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const mongoose = require('mongoose');
 const path = require("path");
 const app = express();
 const router = require("./src/routers");
@@ -11,8 +10,18 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8080;
 
 // MongoDB database connection
-const db = require('./db.js');
-db.connect();
+console.log(process.env.DB_USER);
+const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@apnaprofessordb.2ajoplv.mongodb.net/?retryWrites=true&w=majority`;
+mongoose.connect(url, {
+        useNewUrlParser: true,
+        // useFindAndModify: false,
+        useUnifiedTopology: true,
+        // useCreateIndex: true,
+    })
+    .then(() => console.log("MongoDB is connected successfully"))
+    .catch((err) => console.log("Error: ", err));
+// const db = require('./db.js');
+// db.connect();
 
 app.use(bodyParser.json({ limit: "500mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "500mb" }));

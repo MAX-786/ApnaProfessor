@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@apnaprofessordb.2ajoplv.mongodb.net/?retryWrites=true&w=majority`;
+const url = process.env.DB_URL;
 
 module.exports.connect = () => {
     mongoose.connect(url, {

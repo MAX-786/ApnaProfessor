@@ -15,3 +15,11 @@
 .colleges-list-wrapper {
     background-color: transparent !important;
 }
+
+/* Mobile View */
+
+@media screen and (max-width: 1280px) {
+    .colleges-list-wrapper {
+        margin: 0 auto !important;
+    }
+}

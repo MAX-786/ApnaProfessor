@@ -55,7 +55,9 @@ const Professors = () => {
   };
 
   const handleAddProfessor = () => {
-    navigate("/add/professor", {state: { from : location.pathname + location.search}});
+    navigate("/add/professor", {
+      state: { from: location.pathname + location.search },
+    });
   };
 
   const calculateAverageRating = (totalRating, totalCount) => {
@@ -133,24 +135,16 @@ const Professors = () => {
                       }` +
                       professor.lname
                     }
-                    secondary={
-                      <>
-                        <ListItemText
-                          secondary={`${professor?.review_count} reviews`}
-                        />
-                        <ListItemText
-                          secondary={new Date(
-                            professor?.createdAt
-                          ).toLocaleString("en-GB", {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        />
-                      </>
-                    }
+                    secondary={`${professor?.review_count} reviews`}
                   />
                 </Link>
+                <Typography variant="helper-text" sx={{ position: "absolute", right: 0, top: "1rem", fontSize: "11px", fontWeight: 300 }}>
+                  {new Date(professor?.createdAt).toLocaleString("en-GB", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </Typography>
               </ListItem>
             </div>
           ))}

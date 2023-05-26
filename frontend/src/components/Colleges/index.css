@@ -11,3 +11,11 @@
     border-bottom: 1px solid black;
     text-align: left;
 }
+
+/* Mobile View */
+
+@media screen and (max-width: 1280px) {
+    .colleges-list-container {
+        padding: 0 1rem;
+    }
+}

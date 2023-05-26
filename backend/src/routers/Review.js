@@ -5,7 +5,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 
-const reviewDB = require("../models/Review");
+const reviewDB = require("./../models/Review");
 const userDB = require('../models/User');
 const professorDB = require('../models/Professor');
 

@@ -14,17 +14,17 @@ const CTA = () => {
         </div>
         <div className="cta-img-prompts">
             <div className="cta-card">
-                <a target='_blank' style={{fontSize: "8px", position: "absolute", transform: "rotate(270deg) translate(-160px, -155px)"}} href="https://www.freepik.com/free-vector/up-concept-illustration_5539103.htm#query=like%20illustration&position=1&from_view=keyword&track=ais" rel="noreferrer">Image by storyset on Freepik</a>
+                {/* <a target='_blank' style={{fontSize: "8px", position: "absolute", transform: "rotate(270deg) translate(-160px, -155px)"}} href="https://www.freepik.com/free-vector/up-concept-illustration_5539103.htm#query=like%20illustration&position=1&from_view=keyword&track=ais" rel="noreferrer">Image by storyset on Freepik</a> */}
                 <img src={onlineReview} alt="Online Review Animation" className="cta-card-img" />
                 <div className="cta-card-text">Manage your reviews</div>
             </div>
             <div className="cta-card">
-            <a target='_blank' style={{fontSize: "8px", position: "absolute", transform: "rotate(270deg) translate(-160px, -155px)"}} href="https://www.freepik.com/free-vector/up-concept-illustration_5539103.htm#query=like%20illustration&position=1&from_view=keyword&track=ais" rel="noreferrer">Image by storyset on Freepik</a>
+            {/* <a target='_blank' style={{fontSize: "8px", position: "absolute", transform: "rotate(270deg) translate(-160px, -155px)"}} href="https://www.freepik.com/free-vector/up-concept-illustration_5539103.htm#query=like%20illustration&position=1&from_view=keyword&track=ais" rel="noreferrer">Image by storyset on Freepik</a> */}
                 <img src={anonymousReview} alt="Review Anonymously Animation" className="cta-card-img" />
                 <div className="cta-card-text">Give reviews Anonymously</div>
             </div>
             <div className="cta-card">
-            <a target='_blank' style={{fontSize: "8px", position: "absolute", transform: "rotate(270deg) translate(-160px, -155px)"}} href="https://www.freepik.com/free-vector/up-concept-illustration_5539103.htm#query=like%20illustration&position=1&from_view=keyword&track=ais" rel="noreferrer">Image by storyset on Freepik</a>
+            {/* <a target='_blank' style={{fontSize: "8px", position: "absolute", transform: "rotate(270deg) translate(-160px, -155px)"}} href="https://www.freepik.com/free-vector/up-concept-illustration_5539103.htm#query=like%20illustration&position=1&from_view=keyword&track=ais" rel="noreferrer">Image by storyset on Freepik</a> */}
                 <img src={upvoteReview} alt="Upvote Reveiws Animation" className="cta-card-img" />
                 <div className="cta-card-text">Upvote others reviews</div>
             </div>

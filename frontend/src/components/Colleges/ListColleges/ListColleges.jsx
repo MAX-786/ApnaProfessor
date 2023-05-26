@@ -7,6 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import SchoolIcon from "@mui/icons-material/School";
 import { Link } from "react-router-dom";
 import "./index.css";
+import { Typography } from "@mui/material";
 
 export default function ListColleges(props) {
   const { colleges } = props;
@@ -30,26 +31,17 @@ export default function ListColleges(props) {
             <Link to={`/colleges/${college._id}`}>
               <ListItemText
                 primary={college.name}
-                secondary={
-                  <>
-                    <ListItemText
-                      secondary={`${college?.prof_count} professors`}
-                    />
-                    <ListItemText
-                      secondary={new Date(college?.createdAt).toLocaleString(
-                        "en-GB",
-                        {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        }
-                      )}
-                    />
-                  </>
-                }
+                secondary={`${college?.prof_count} professors`}
               />
             </Link>
-          </ListItem>
+          <Typography variant="heler-text" sx={{ position: "absolute", right: 0, top: "1rem", fontSize: "11px", fontWeight: 300 }}>
+            {new Date(college?.createdAt).toLocaleString("en-GB", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </Typography>
+            </ListItem>
         </div>
       ))}
     </List>

@@ -4,10 +4,6 @@
     margin: 0 auto;
 }
 
-.professors-wrapper {
-    margin: 1rem 2rem;
-}
-
 .professors-list {
     background-color: transparent !important;
 }
@@ -54,4 +50,18 @@
 
 .card-actions button:focus {
     outline: none !important;
+}
+
+/* Mobile View */
+
+@media screen and (max-width: 1280px) {
+    .professors-wrapper {
+        padding: 0 1rem;
+    }
+    .professors-list {
+        margin: 0 auto !important;
+    }
+    .professor-container {
+        padding: 0 1rem;
+    }
 }

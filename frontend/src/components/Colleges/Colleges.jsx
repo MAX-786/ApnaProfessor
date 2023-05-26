@@ -52,7 +52,7 @@ export const Colleges = () => {
     <>
       <div className="colleges-list-container">
         <p className="colleges-list-header">
-          Found {colleges?.totalDocs} college
+          Found <b>{colleges?.totalDocs}</b> college
           {colleges?.totalDocs > 1 ? "s" : ""} containing &quot;
           {colleges?.query}&quot;{" "}
         </p>

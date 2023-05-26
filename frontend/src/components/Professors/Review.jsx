@@ -60,7 +60,7 @@ const Review = ({ review, isVoted }) => {
       }}>
       <CardContent>
         <Rating size="large" name="read-only" value={review.rating} readOnly />
-        <Typography sx={{ mb: 1.5, textAlign: "right" }} color="text.secondary">
+        <Typography sx={{ mb: 1.5, textAlign: "right", fontSize: "11px", fontWeight: 300 }} color="text.secondary">
           {new Date(review.createdAt).toLocaleString("en-GB", {
             year: "numeric",
             month: "short",

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "../../features/userSlice";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+const process = import.meta.env;
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,7 @@ const Auth = () => {
           photo: authUser.photoURL,
         };
         axios
-          .post("http://localhost:8080/api/user", userData)
+          .post(`${process.VITE_API_BASE_URL}/user`, userData)
           .then((res, err) => {
             if (err) {
               console.log(err);

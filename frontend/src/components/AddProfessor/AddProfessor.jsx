@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import { getColleges } from "../../features/collegesSlice";
 import { useNavigate } from "react-router-dom";
+const process = import.meta.env;
 
 const AddProfessor = () => {
   React.useEffect(() => {
@@ -36,7 +37,7 @@ const AddProfessor = () => {
     };
 
     axios
-      .post("http://localhost:8080/api/professor", professorData)
+      .post(`${process.VITE_API_BASE_URL}/professor`, professorData)
       .then(({ data }) => {
         alert(
           `${

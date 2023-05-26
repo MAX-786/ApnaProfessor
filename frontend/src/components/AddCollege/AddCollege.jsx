@@ -11,6 +11,7 @@ import { selectUser } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import { fetchAllColleges } from "../../App";
 import { Typography } from "@mui/material";
+const process = import.meta.env;
 
 const AddCollege = () => {
   const [countryCode, setCountryCode] = useState("");
@@ -46,7 +47,7 @@ const AddCollege = () => {
     };
 
     axios
-      .post("http://localhost:8080/api/college", collegeData)
+      .post(`${process.VITE_API_BASE_URL}/college`, collegeData)
       .then((res) => {
         alert(`${res.data.name} is added successfully!`);
         fetchAllColleges(dispatch);

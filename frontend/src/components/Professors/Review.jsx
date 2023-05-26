@@ -13,6 +13,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, addReviewId, removeReviewId } from "../../features/userSlice";
+const process = import.meta.env;
 
 const Review = ({ review, isVoted }) => {
   const [isUpvoted, setIsUpvoted] = React.useState(isVoted);
@@ -32,7 +33,7 @@ const Review = ({ review, isVoted }) => {
       user_id: user._id,
     };
     await axios
-      .post(`http://localhost:8080/api/review/${review._id}`, data)
+      .post(`${process.VITE_API_BASE_URL}/review/${review._id}`, data)
       .then((res) => {
         setIsUpvoted((prev) => !prev);
         setVotes((prev) => (!isUpvoted ? prev + 1 : prev - 1));

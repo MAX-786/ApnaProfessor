@@ -13,6 +13,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
 import "./index.css";
 import { Button, Pagination, Typography } from "@mui/material";
+const process = import.meta.env;
 
 // eslint-disable-next-line react/prop-types
 const Professors = () => {
@@ -34,7 +35,7 @@ const Professors = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/college/${college_id}?page=${page}`)
+      .get(`${process.VITE_API_BASE_URL}/college/${college_id}?page=${page}`)
       .then(({ data }) => {
         dispatch(addProfessors(data.docs));
         setProfessors(data.docs);

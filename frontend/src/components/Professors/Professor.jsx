@@ -16,6 +16,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Review from "./Review";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
+const process = import.meta.env;
 
 const Professor = () => {
   const { professor_id } = useParams();
@@ -30,7 +31,7 @@ const Professor = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/professor/${professor_id}?page=${page}`)
+      .get(`${process.VITE_API_BASE_URL}/professor/${professor_id}?page=${page}`)
       .then(({ data }) => {
         setReiews(data.docs);
         setProfessor(data.professor);

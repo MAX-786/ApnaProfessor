@@ -13,10 +13,11 @@ import {persistor} from './app/store';
 import axios from 'axios';
 import { addColleges } from "./features/collegesSlice";
 // import PrivateRoutes from "./utils/PrivateRoutes";
+const process = import.meta.env;
 
 export const fetchAllColleges = (dispatch) => {
   axios
-  .get(`http://localhost:8080/api/college/all`)
+  .get(`${process.VITE_API_BASE_URL}/college/all`)
   .then(({data}) => {
     dispatch(addColleges(data));
   })

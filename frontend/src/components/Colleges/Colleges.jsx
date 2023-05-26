@@ -8,6 +8,7 @@ import "./index.css";
 import ListColleges from "./ListColleges/ListColleges";
 import { persistor } from "../../app/store";
 import { Button, Pagination } from "@mui/material";
+const process = import.meta.env;
 
 export async function loader({ request }) {
   const query = new URL(request.url).searchParams.get("q")
@@ -19,7 +20,7 @@ export async function loader({ request }) {
     
   let colleges;
   await axios
-    .get(`http://localhost:8080/api/college?q=${query}&page=${page}`)
+    .get(`${process.VITE_API_BASE_URL}/college?q=${query}&page=${page}`)
     .then(({ data }) => {
       // console.log(query);
       colleges = {

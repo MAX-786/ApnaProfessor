@@ -8,6 +8,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { TextField, FormControlLabel, Radio, RadioGroup, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
+const process = import.meta.env;
 
 const labels = {
   0: "-",
@@ -38,7 +39,7 @@ const AddReview = () => {
     document.title = "Add a Review | Know Your Professors Excusively";
 
     axios
-      .get(`http://localhost:8080/api/professor/${professor_id}?prof_only=true`)
+      .get(`${process.VITE_API_BASE_URL}/professor/${professor_id}?prof_only=true`)
       .then(({ data }) => {
         setProfName(
           data.fname +
@@ -70,7 +71,7 @@ const AddReview = () => {
     };
 
     axios
-      .post("http://localhost:8080/api/review", reviewData)
+      .post(`${process.VITE_API_BASE_URL}/review`, reviewData)
       .then(({ data }) => {
         // console.log(data);
         navigate(`/colleges/${college_id.current}/${professor_id}`)

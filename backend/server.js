@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8080;
 
 // MongoDB database connection
-console.log(process.env.DB_USER);
+
 const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@apnaprofessordb.2ajoplv.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(url, {
         useNewUrlParser: true,
@@ -39,13 +39,13 @@ app.use("/uploads", express.static(path.join(__dirname, "/../uploads")));
 app.use(express.static(path.join(__dirname, "/../frontend/dist")));
 
 // Root api call
-// app.get("*", (req, res) => {
-//     try {
-//         res.sendFile(path.join(`${__dirname}/../frontend/dist/index.html`));
-//     } catch (e) {
-//         res.send("Welcome to KYPE");
-//     }
-// });
+app.get("*", (req, res) => {
+    try {
+        res.sendFile(path.join(`${__dirname}/../frontend/dist/index.html`));
+    } catch (e) {
+        res.send("Welcome to KYPE");
+    }
+});
 
 app.use(cors());
 

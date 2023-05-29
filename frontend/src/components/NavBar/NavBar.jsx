@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./index.css";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -159,9 +160,9 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        style={{ background: "#000000a3", backdropFilter: "blur(8px)" }}
+        style={{ background: "#000000a3", backdropFilter: "blur(8px)", alignItems: "center" }}
         enableColorOnDark>
-        <Toolbar>
+        <Toolbar className="navbar-items">
           <Typography
             variant="h6"
             noWrap

@@ -6,6 +6,12 @@ import CTA from './CTA/CTA'
 import Footer from '../Footer/Footer'
 
 const Home = () => {
+
+  React.useEffect(() => {
+    // Update the page title
+    document.title = "KYPE | Know Your Professors Excusively";
+  }, []);
+
   return (
     <>
       <NavBar />

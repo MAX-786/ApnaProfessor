@@ -18,6 +18,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
+import kypeLogo from "../../assets/kype-black.svg";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -163,14 +164,7 @@ export default function PrimarySearchAppBar() {
         style={{ background: "#000000a3", backdropFilter: "blur(8px)", alignItems: "center" }}
         enableColorOnDark>
         <Toolbar className="navbar-items">
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" }, cursor: "pointer" }}
-            onClick={handleLogoOnClick}>
-            KYPE
-          </Typography>
+          <img src={kypeLogo} alt="kype logo" onClick={handleLogoOnClick}/>
           {/* <Search>
                 <SearchIconWrapper>
                 <PersonIcon />

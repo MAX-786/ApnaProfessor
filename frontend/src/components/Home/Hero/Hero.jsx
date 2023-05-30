@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { TextField, Autocomplete } from "@mui/material";
 import { useSelector } from "react-redux";
 import { getColleges } from "../../../features/collegesSlice";
-import kypeLogo from "../../../assets/kyte-logo.png";
+import kypeLogo from "../../../assets/kype-black.svg";
 
 function Hero() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function Hero() {
     <div className="hero">
       <img
         src={kypeLogo}
-        alt="Website Logo"
+        alt="KYPE"
         className="hero-logo"
       />
       <p className="dynamic-paragraph">Explore and Share Reviews!</p>

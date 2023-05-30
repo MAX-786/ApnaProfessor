@@ -6,7 +6,20 @@
     }
 }
 
+.navbar-items img {
+    width: 70px;
+    cursor: pointer;
+}
+
+/* MOBILE VIEW */
+
 .navbar-items {
     padding: 0 1rem;
     width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-items img {
+        display: none;
+    }
 }
